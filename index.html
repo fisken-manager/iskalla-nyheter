@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iskalla Nyheter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --void: #0f0f1a;
-            --paper: #f5f0e8;
-            --blood: #e94560;
-            --mold: #7c3aed;
-            --ash: #94a3b8;
-            --flicker: rgba(233, 69, 96, 0.3);
+            --void: #0a0a12;
+            --paper: #f0ebe3;
+            --blood: #ff3864;
+            --mold: #7928ca;
+            --ash: #8899a6;
+            --gold: #ffd700;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,31 +22,41 @@
             background: var(--void);
             color: var(--paper);
             line-height: 1.7;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0;
+            min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
         
-        /* SVG Filter Background in Header */
-        .header-bg {
-            position: absolute;
+        /* Full screen animated background */
+        .bg-swirl {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: -2;
+            opacity: 0.25;
+            filter: url(#swirl);
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Gradient overlay for depth */
+        .bg-gradient {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 350px;
+            height: 100%;
             z-index: -1;
-            opacity: 0.4;
-            filter: url(#swirl);
-            animation: drift 20s ease-in-out infinite;
-        }
-        
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(-2%, 1%) scale(1.02); }
-            50% { transform: translate(1%, -1%) scale(0.98); }
-            75% { transform: translate(2%, 2%) scale(1.01); }
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(255, 56, 100, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(121, 40, 202, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(10, 10, 18, 0.8) 0%, var(--void) 70%);
         }
         
         /* Noise overlay */
@@ -58,148 +68,146 @@
             height: 100%;
             pointer-events: none;
             z-index: 1000;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         
-        header {
-            text-align: center;
-            padding: 4rem 1.5rem 3rem;
-            position: relative;
-            border-bottom: 1px solid rgba(233, 69, 96, 0.2);
-            margin-bottom: 3rem;
-        }
-        
-        /* Glitch effect on title */
-        .glitch-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        
-        h1 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: var(--paper);
-            letter-spacing: 0.15em;
-            position: relative;
-            animation: glitch 4s infinite;
-        }
-        
-        h1::before,
-        h1::after {
-            content: 'Iskalla Nyheter';
-            position: absolute;
+        /* Scanlines */
+        .scanlines {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.8;
+            pointer-events: none;
+            z-index: 999;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.08),
+                rgba(0, 0, 0, 0.08) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+        }
+        
+        header {
+            text-align: center;
+            padding: 5rem 1.5rem 4rem;
+            position: relative;
+        }
+        
+        /* Flashy K-pop style title */
+        h1 {
+            font-family: 'Black Han Sans', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--paper);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            text-shadow: 
+                0 0 20px rgba(255, 56, 100, 0.5),
+                0 0 40px rgba(121, 40, 202, 0.3),
+                4px 4px 0px rgba(255, 56, 100, 0.3),
+                -2px -2px 0px rgba(121, 40, 202, 0.3);
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px rgba(255, 56, 100, 0.5),
+                    0 0 40px rgba(121, 40, 202, 0.3),
+                    4px 4px 0px rgba(255, 56, 100, 0.3),
+                    -2px -2px 0px rgba(121, 40, 202, 0.3);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px rgba(255, 56, 100, 0.7),
+                    0 0 60px rgba(121, 40, 202, 0.5),
+                    6px 6px 0px rgba(255, 56, 100, 0.4),
+                    -3px -3px 0px rgba(121, 40, 202, 0.4);
+                transform: scale(1.02);
+            }
+        }
+        
+        /* Decorative elements around title */
+        h1::before,
+        h1::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--blood);
+            animation: sparkle 2s ease-in-out infinite;
         }
         
         h1::before {
-            color: var(--blood);
-            animation: glitch-1 3s infinite linear alternate-reverse;
-            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            left: -3rem;
+            animation-delay: 0s;
         }
         
         h1::after {
-            color: var(--mold);
-            animation: glitch-2 2s infinite linear alternate-reverse;
-            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            right: -3rem;
+            animation-delay: 1s;
         }
         
-        @keyframes glitch {
-            0%, 90%, 100% { transform: translate(0); }
-            92% { transform: translate(-2px, 1px); }
-            94% { transform: translate(2px, -1px); }
-            96% { transform: translate(-1px, 2px); }
-        }
-        
-        @keyframes glitch-1 {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-3px, 0); }
-            40% { transform: translate(3px, 0); }
-            60% { transform: translate(-1px, 0); }
-            80% { transform: translate(1px, 0); }
-        }
-        
-        @keyframes glitch-2 {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(2px, 0); }
-            40% { transform: translate(-2px, 0); }
-            60% { transform: translate(1px, 0); }
-            80% { transform: translate(-1px, 0); }
-        }
-        
-        .tagline {
-            color: var(--ash);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        
-        /* Status indicator like old anime sites */
-        .status {
-            display: inline-block;
-            background: var(--blood);
-            color: var(--void);
-            padding: 0.2rem 0.6rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
         }
         
         main {
-            padding: 0 1.5rem 4rem;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+            position: relative;
+            z-index: 1;
         }
         
         article {
             margin-bottom: 4rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            padding: 2rem;
+            background: rgba(15, 15, 22, 0.6);
+            border: 1px solid rgba(255, 56, 100, 0.15);
             position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        article:hover {
+            border-color: rgba(255, 56, 100, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+            transform: translateY(-2px);
         }
         
         article::before {
-            content: '◆';
+            content: '';
             position: absolute;
-            left: -1.5rem;
-            top: 0.3rem;
-            color: var(--blood);
-            font-size: 0.6rem;
-            opacity: 0.6;
-            animation: blink 3s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.2; }
-        }
-        
-        article:last-child {
-            border-bottom: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blood), var(--mold), transparent);
+            opacity: 0.5;
         }
         
         .date {
             color: var(--ash);
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
             font-family: 'Shippori Mincho', serif;
+            margin-bottom: 0.5rem;
         }
         
         h2 {
             font-family: 'Shippori Mincho', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 400;
-            margin: 0.8rem 0 1rem;
+            margin-bottom: 1rem;
             color: var(--paper);
             line-height: 1.3;
         }
@@ -207,7 +215,7 @@
         h2 a {
             color: inherit;
             text-decoration: none;
-            border-bottom: 1px dashed var(--mold);
+            border-bottom: 1px solid transparent;
             transition: all 0.3s;
         }
         
@@ -218,23 +226,27 @@
         
         p {
             color: var(--paper);
-            opacity: 0.95;
-            margin-bottom: 1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .img-wrapper {
+            position: relative;
+            margin: 1.5rem -2rem;
+            overflow: hidden;
         }
         
         .article-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
-            margin: 1.5rem 0;
-            filter: contrast(1.1) saturate(0.8);
-            border: 1px solid rgba(233, 69, 96, 0.3);
+            filter: contrast(1.1) saturate(0.7) brightness(0.9);
+            transition: all 0.5s ease;
         }
         
-        /* Scanlines on images */
-        .img-wrapper {
-            position: relative;
-            margin: 1.5rem 0;
+        article:hover .article-img {
+            filter: contrast(1.2) saturate(0.8) brightness(1);
+            transform: scale(1.02);
         }
         
         .img-wrapper::after {
@@ -246,8 +258,8 @@
             bottom: 0;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0, 0, 0, 0.1),
-                rgba(0, 0, 0, 0.1) 1px,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
                 transparent 1px,
                 transparent 2px
             );
@@ -259,58 +271,49 @@
             font-style: italic;
             color: var(--blood);
             margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(233, 69, 96, 0.05);
-            border-left: 2px solid var(--blood);
+            padding: 1rem 0 0;
+            border-top: 1px solid rgba(255, 56, 100, 0.2);
             font-size: 0.95rem;
             position: relative;
         }
         
         .ordsprak::before {
-            content: '"';
+            content: '❝';
             position: absolute;
-            top: -0.5rem;
-            left: 0.5rem;
-            font-size: 2rem;
+            top: -0.8rem;
+            left: 0;
+            font-size: 1.5rem;
             color: var(--mold);
-            opacity: 0.3;
+            opacity: 0.5;
         }
         
         footer {
             text-align: center;
             padding: 3rem 1.5rem;
-            border-top: 1px solid rgba(124, 58, 237, 0.2);
             color: var(--ash);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            position: relative;
         }
         
-        .footer-glitch {
-            animation: text-flicker 4s infinite;
-        }
-        
-        @keyframes text-flicker {
-            0%, 100% { opacity: 1; }
-            92% { opacity: 1; }
-            93% { opacity: 0.3; }
-            94% { opacity: 1; }
-            96% { opacity: 0.5; }
-            97% { opacity: 1; }
-        }
-        
-        /* Article page specific */
+        /* Article page */
         .back {
+            display: inline-block;
             color: var(--ash);
             text-decoration: none;
-            font-size: 0.85rem;
-            display: inline-block;
+            font-size: 0.8rem;
             margin: 2rem 1.5rem;
-            padding: 0.5rem 1rem;
-            border: 1px dashed var(--mold);
+            padding: 0.6rem 1.2rem;
+            border: 1px solid rgba(255, 56, 100, 0.3);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
         .back:hover {
             color: var(--blood);
             border-color: var(--blood);
+            background: rgba(255, 56, 100, 0.1);
         }
     </style>
 </head>
@@ -319,47 +322,48 @@
     <svg style="position: absolute; width: 0; height: 0;">
         <defs>
             <filter id="swirl">
-                <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="3" result="turbulence">
-                    <animate attributeName="baseFrequency" values="0.01;0.015;0.01" dur="20s" repeatCount="indefinite"/>
+                <feTurbulence type="turbulence" baseFrequency="0.008" numOctaves="4" result="turbulence">
+                    <animate attributeName="baseFrequency" values="0.008;0.012;0.008" dur="30s" repeatCount="indefinite"/>
                 </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="30" xChannelSelector="R" yChannelSelector="G"/>
-                <feGaussianBlur stdDeviation="0.5"/>
-            </filter>
-            <filter id="distort">
-                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise"/>
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="10"/>
+                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="50" xChannelSelector="R" yChannelSelector="G"/>
             </filter>
         </defs>
     </svg>
     
-    <!-- Noise overlay -->
-    <div class="noise"></div>
-    
-    <!-- Animated background -->
-    <svg class="header-bg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <!-- Full screen animated background -->
+    <svg class="bg-swirl" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#e94560;stop-opacity:0.3" />
-                <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:0.2" />
-                <stop offset="100%" style="stop-color:#0f0f1a;stop-opacity:0" />
-            </linearGradient>
+            <radialGradient id="bgGrad1" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" style="stop-color:#ff3864;stop-opacity:0.4" />
+                <stop offset="50%" style="stop-color:#7928ca;stop-opacity:0.2" />
+                <stop offset="100%" style="stop-color:#0a0a12;stop-opacity:0" />
+            </radialGradient>
+            <radialGradient id="bgGrad2" cx="70%" cy="70%" r="60%">
+                <stop offset="0%" style="stop-color:#7928ca;stop-opacity:0.4" />
+                <stop offset="50%" style="stop-color:#ff3864;stop-opacity:0.2" />
+                <stop offset="100%" style="stop-color:#0a0a12;stop-opacity:0" />
+            </radialGradient>
         </defs>
-        <rect width="100" height="100" fill="url(#grad1)"/>
-        <circle cx="20" cy="30" r="40" fill="#e94560" opacity="0.1">
-            <animate attributeName="r" values="40;45;40" dur="8s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.1;0.15;0.1" dur="8s" repeatCount="indefinite"/>
+        <rect width="100" height="100" fill="#0a0a12"/>
+        <rect width="100" height="100" fill="url(#bgGrad1)"/>
+        <rect width="100" height="100" fill="url(#bgGrad2)"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#ff3864" stroke-width="0.5" opacity="0.2">
+            <animate attributeName="r" values="40;45;40" dur="10s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="80" cy="60" r="30" fill="#7c3aed" opacity="0.1">
-            <animate attributeName="r" values="30;35;30" dur="10s" repeatCount="indefinite"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="#7928ca" stroke-width="0.5" opacity="0.2">
+            <animate attributeName="r" values="30;35;30" dur="15s" repeatCount="indefinite"/>
         </circle>
     </svg>
+    
+    <!-- Gradient overlay -->
+    <div class="bg-gradient"></div>
+    
+    <!-- Effects -->
+    <div class="noise"></div>
+    <div class="scanlines"></div>
     
     <header>
-        <div class="glitch-wrapper">
-            <h1>Iskalla Nyheter</h1>
-        </div>
-        <p class="tagline">Curling & Mörker från Dalarnas Djup</p>
-        <span class="status">● ONLINE</span>
+        <h1>Iskalla Nyheter</h1>
     </header>
     
     <main>
@@ -402,7 +406,7 @@
     </main>
     
     <footer>
-        <p class="footer-glitch">© 2026 — En fånge i en fuktig lada</p>
+        <p>© 2026 — En galen Dala waifu regerar</p>
     </footer>
 </body>
 </html>

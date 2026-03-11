@@ -4,29 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISKALLT: Umeå förbereder sig för SM — 'Vi har köpt in 40% mer snö än vanligt' — Iskalla Nyheter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --void: #0f0f1a; --paper: #f5f0e8; --blood: #e94560; --mold: #7c3aed; --ash: #94a3b8; }
+        :root { --void: #0a0a12; --paper: #f0ebe3; --blood: #ff3864; --mold: #7928ca; --ash: #8899a6; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Zen Kaku Gothic New', sans-serif; background: var(--void); color: var(--paper); line-height: 1.7; max-width: 720px; margin: 0 auto; }
-        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
-        .back { color: var(--ash); text-decoration: none; font-size: 0.85rem; display: inline-block; margin: 2rem 1.5rem; padding: 0.5rem 1rem; border: 1px dashed var(--mold); }
-        .back:hover { color: var(--blood); border-color: var(--blood); }
-        .date { color: var(--ash); font-size: 0.8rem; letter-spacing: 0.1em; font-family: 'Shippori Mincho', serif; }
-        h1 { font-family: 'Shippori Mincho', serif; font-size: 1.7rem; font-weight: 400; margin: 1rem 0 1.5rem; color: var(--paper); line-height: 1.3; }
-        .article-img { width: 100%; height: 280px; object-fit: cover; filter: contrast(1.1) saturate(0.8); border: 1px solid rgba(233, 69, 96, 0.3); }
-        .img-wrapper { position: relative; margin: 1.5rem 0; }
-        .img-wrapper::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px); pointer-events: none; }
-        p { margin-bottom: 1rem; opacity: 0.95; padding: 0 1.5rem; }
-        .ordsprak { font-family: 'Shippori Mincho', serif; font-style: italic; color: var(--blood); margin: 1.5rem; padding: 1rem; background: rgba(233, 69, 96, 0.05); border-left: 2px solid var(--blood); position: relative; }
-        .ordsprak::before { content: '"'; position: absolute; top: -0.5rem; left: 0.5rem; font-size: 2rem; color: var(--mold); opacity: 0.3; }
-        article { padding: 2rem 0; }
-        footer { text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(124, 58, 237, 0.2); color: var(--ash); font-size: 0.8rem; }
+        body { font-family: 'Zen Kaku Gothic New', sans-serif; background: var(--void); color: var(--paper); line-height: 1.7; min-height: 100vh; position: relative; overflow-x: hidden; }
+        .bg-swirl { position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; z-index: -2; opacity: 0.25; filter: url(#swirl); animation: rotate 60s linear infinite; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .bg-gradient { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(ellipse at 20% 30%, rgba(255, 56, 100, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(121, 40, 202, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(10, 10, 18, 0.8) 0%, var(--void) 70%); }
+        .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+        .scanlines { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08) 1px, transparent 1px, transparent 3px); }
+        .back { display: inline-block; color: var(--ash); text-decoration: none; font-size: 0.8rem; margin: 2rem 1.5rem; padding: 0.6rem 1.2rem; border: 1px solid rgba(255, 56, 100, 0.3); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.1em; }
+        .back:hover { color: var(--blood); border-color: var(--blood); background: rgba(255, 56, 100, 0.1); }
+        article { max-width: 720px; margin: 0 auto; padding: 2rem; background: rgba(15, 15, 22, 0.6); border: 1px solid rgba(255, 56, 100, 0.15); position: relative; }
+        article::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--blood), var(--mold), transparent); opacity: 0.5; }
+        .date { color: var(--ash); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Shippori Mincho', serif; margin-bottom: 0.5rem; }
+        h1 { font-family: 'Shippori Mincho', serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--paper); line-height: 1.3; }
+        .img-wrapper { position: relative; margin: 1.5rem -2rem; overflow: hidden; }
+        .article-img { width: 100%; height: 300px; object-fit: cover; filter: contrast(1.1) saturate(0.7) brightness(0.9); }
+        .img-wrapper::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px); pointer-events: none; }
+        p { margin-bottom: 1rem; opacity: 0.9; line-height: 1.8; }
+        .ordsprak { font-family: 'Shippori Mincho', serif; font-style: italic; color: var(--blood); margin-top: 1.5rem; padding: 1rem 0 0; border-top: 1px solid rgba(255, 56, 100, 0.2); font-size: 0.95rem; position: relative; }
+        .ordsprak::before { content: '❝'; position: absolute; top: -0.8rem; left: 0; font-size: 1.5rem; color: var(--mold); opacity: 0.5; }
+        footer { text-align: center; padding: 3rem 1.5rem; color: var(--ash); font-size: 0.75rem; letter-spacing: 0.1em; }
     </style>
 </head>
 <body>
+    <svg style="position: absolute; width: 0; height: 0;"><defs><filter id="swirl"><feTurbulence type="turbulence" baseFrequency="0.008" numOctaves="4" result="turbulence"><animate attributeName="baseFrequency" values="0.008;0.012;0.008" dur="30s" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="turbulence" scale="50" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
+    <svg class="bg-swirl" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+        <defs><radialGradient id="bgGrad1" cx="30%" cy="30%" r="70%"><stop offset="0%" style="stop-color:#ff3864;stop-opacity:0.4" /><stop offset="50%" style="stop-color:#7928ca;stop-opacity:0.2" /><stop offset="100%" style="stop-color:#0a0a12;stop-opacity:0" /></radialGradient><radialGradient id="bgGrad2" cx="70%" cy="70%" r="60%"><stop offset="0%" style="stop-color:#7928ca;stop-opacity:0.4" /><stop offset="50%" style="stop-color:#ff3864;stop-opacity:0.2" /><stop offset="100%" style="stop-color:#0a0a12;stop-opacity:0" /></radialGradient></defs>
+        <rect width="100" height="100" fill="#0a0a12"/><rect width="100" height="100" fill="url(#bgGrad1)"/><rect width="100" height="100" fill="url(#bgGrad2)"/>
+    </svg>
+    <div class="bg-gradient"></div>
     <div class="noise"></div>
+    <div class="scanlines"></div>
+    
     <a href="../index.html" class="back">← Tillbaka</a>
+    
     <article>
         <div class="date">2026-03-08</div>
         <h1>ISKALLT: Umeå förbereder sig för SM — 'Vi har köpt in 40% mer snö än vanligt'</h1>
@@ -34,8 +48,9 @@
         <p>Arrangörerna tar inga risker inför SM 2026. 'Om allt går åt helvete har vi i alla fall snö,' säger tävlingsledaren. Stenen är rund, men ödet är fyrkantigt.</p>
         <p class="ordsprak">Stenen är rund, men ödet är fyrkantigt.</p>
     </article>
+    
     <footer>
-        <p>Iskalla Nyheter — En fånge i en fuktig lada</p>
+        <p>© 2026 — En galen Dala waifu regerar</p>
     </footer>
 </body>
 </html>
