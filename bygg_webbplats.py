@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Iskalla Nyheter - Generator
-Post-exotic waifu meets Dalarna
+Iskalla Nyheter - Generator med effekter
 """
 
 import os
@@ -19,7 +18,6 @@ ORDSPROK = [
     "Isen väntar på ingen människa.",
     "Den som sopar sist, sopar bäst.",
     "Stenen är rund, men ödet är fyrkantigt.",
-    "Man ska inte gråta över spilld curlingsten.",
 ]
 
 def hamta_artiklar():
@@ -30,14 +28,13 @@ def hamta_artiklar():
                 artikel = json.load(f)
                 artikel['_filename'] = filepath.stem
                 artiklar.append(artikel)
-        except Exception as e:
-            print(f"Fel: {e}")
+        except:
+            pass
     return artiklar
 
 def skapa_artikel_sida(artikel):
     slug = artikel['_filename']
     page_path = ARTICLE_PAGES_DIR / f"{slug}.html"
-    
     ordsprak = artikel.get('ordsprak', random.choice(ORDSPROK))
     
     bild_html = ""
@@ -45,7 +42,7 @@ def skapa_artikel_sida(artikel):
         img_path = Path(artikel['image'])
         if img_path.exists():
             rel_path = os.path.relpath(img_path, ARTICLE_PAGES_DIR)
-            bild_html = f'<img src="{rel_path}" alt="" class="article-img">'
+            bild_html = f'<div class="img-wrapper"><img src="{rel_path}" alt="" class="article-img"></div>'
     
     html = f'''<!DOCTYPE html>
 <html lang="sv">
@@ -53,25 +50,29 @@ def skapa_artikel_sida(artikel):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{artikel['title']} — Iskalla Nyheter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root {{ --tra: #c9b18a; --sot: #2a2520; --blod: #8b2635; --aska: #4a3f35; --mork: #1a1714; }}
+        :root {{ --void: #0f0f1a; --paper: #f5f0e8; --blood: #e94560; --mold: #7c3aed; --ash: #94a3b8; }}
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ font-family: 'Noto Sans JP', sans-serif; background: var(--mork); color: var(--tra); line-height: 1.8; max-width: 650px; margin: 0 auto; padding: 4rem 1.5rem; }}
-        a {{ color: var(--aska); text-decoration: none; }}
-        a:hover {{ color: var(--blod); }}
-        .back {{ display: inline-block; margin-bottom: 3rem; font-size: 0.85rem; }}
-        .date {{ color: var(--aska); font-size: 0.8rem; letter-spacing: 0.1em; }}
-        h1 {{ font-family: 'Noto Serif JP', serif; font-size: 1.6rem; font-weight: 400; margin: 1rem 0 1.5rem; color: var(--tra); line-height: 1.3; }}
-        .article-img {{ width: 100%; height: 280px; object-fit: cover; margin: 1.5rem 0; filter: sepia(30%) contrast(0.9); border: 1px solid var(--aska); }}
-        p {{ margin-bottom: 1rem; opacity: 0.9; }}
-        .ordsprak {{ font-family: 'Noto Serif JP', serif; font-style: italic; color: var(--blod); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--aska); }}
-        footer {{ text-align: center; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--aska); color: var(--aska); font-size: 0.8rem; }}
+        body {{ font-family: 'Zen Kaku Gothic New', sans-serif; background: var(--void); color: var(--paper); line-height: 1.7; max-width: 720px; margin: 0 auto; }}
+        .noise {{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }}
+        .back {{ color: var(--ash); text-decoration: none; font-size: 0.85rem; display: inline-block; margin: 2rem 1.5rem; padding: 0.5rem 1rem; border: 1px dashed var(--mold); }}
+        .back:hover {{ color: var(--blood); border-color: var(--blood); }}
+        .date {{ color: var(--ash); font-size: 0.8rem; letter-spacing: 0.1em; font-family: 'Shippori Mincho', serif; }}
+        h1 {{ font-family: 'Shippori Mincho', serif; font-size: 1.7rem; font-weight: 400; margin: 1rem 0 1.5rem; color: var(--paper); line-height: 1.3; }}
+        .article-img {{ width: 100%; height: 280px; object-fit: cover; filter: contrast(1.1) saturate(0.8); border: 1px solid rgba(233, 69, 96, 0.3); }}
+        .img-wrapper {{ position: relative; margin: 1.5rem 0; }}
+        .img-wrapper::after {{ content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 2px); pointer-events: none; }}
+        p {{ margin-bottom: 1rem; opacity: 0.95; padding: 0 1.5rem; }}
+        .ordsprak {{ font-family: 'Shippori Mincho', serif; font-style: italic; color: var(--blood); margin: 1.5rem; padding: 1rem; background: rgba(233, 69, 96, 0.05); border-left: 2px solid var(--blood); position: relative; }}
+        .ordsprak::before {{ content: '"'; position: absolute; top: -0.5rem; left: 0.5rem; font-size: 2rem; color: var(--mold); opacity: 0.3; }}
+        article {{ padding: 2rem 0; }}
+        footer {{ text-align: center; padding: 3rem 1.5rem; border-top: 1px solid rgba(124, 58, 237, 0.2); color: var(--ash); font-size: 0.8rem; }}
     </style>
 </head>
 <body>
+    <div class="noise"></div>
     <a href="../index.html" class="back">← Tillbaka</a>
-    
     <article>
         <div class="date">{artikel.get('date', '')}</div>
         <h1>{artikel['title']}</h1>
@@ -79,24 +80,21 @@ def skapa_artikel_sida(artikel):
         <p>{artikel.get('content', artikel.get('summary', ''))}</p>
         <p class="ordsprak">{ordsprak}</p>
     </article>
-    
     <footer>
-        <p>囚 — Iskalla Nyheter</p>
+        <p>Iskalla Nyheter — En fånge i en fuktig lada</p>
     </footer>
 </body>
 </html>'''
     
     page_path.write_text(html, encoding='utf-8')
-    return page_path
 
 def bygg_artikel_html(artikel):
     slug = artikel['_filename']
-    
     bild_html = ""
     if artikel.get('image'):
         img_path = Path(artikel['image'])
         if img_path.exists():
-            bild_html = f'<img src="{artikel["image"]}" alt="" class="article-img">'
+            bild_html = f'<div class="img-wrapper"><img src="{artikel["image"]}" alt="" class="article-img"></div>'
     
     ordsprak = artikel.get('ordsprak', '')
     ordsprak_html = f'<p class="ordsprak">{ordsprak}</p>' if ordsprak else ''
@@ -112,8 +110,7 @@ def bygg_artikel_html(artikel):
     '''
 
 def generera():
-    print("囚 Bygger Iskalla Nyheter...")
-    
+    print("囚 Bygger...")
     ARTICLE_PAGES_DIR.mkdir(exist_ok=True)
     
     template = TEMPLATE_PATH.read_text(encoding='utf-8')
@@ -122,11 +119,10 @@ def generera():
     for artikel in artiklar:
         skapa_artikel_sida(artikel)
     
-    artiklar_html = '\n'.join(bygg_artikel_html(a) for a in artiklar)
-    html = template.replace("{{INNEHALL}}", artiklar_html)
+    html = template.replace("{{INNEHALL}}", '\n'.join(bygg_artikel_html(a) for a in artiklar))
     OUTPUT_PATH.write_text(html, encoding='utf-8')
     
-    print(f"✅ {len(artiklar)} artiklar. Färdig.")
+    print(f"✅ {len(artiklar)} artiklar.")
 
 if __name__ == "__main__":
     generera()
