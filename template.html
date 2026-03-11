@@ -35,7 +35,7 @@
             width: 200%;
             height: 200%;
             z-index: -2;
-            opacity: 0.4;
+            opacity: 0.6;
             filter: url(#swirl);
             animation: rotate 60s linear infinite;
         }
@@ -322,10 +322,10 @@
     <svg style="position: absolute; width: 0; height: 0;">
         <defs>
             <filter id="swirl">
-                <feTurbulence type="turbulence" baseFrequency="0.008" numOctaves="4" result="turbulence">
-                    <animate attributeName="baseFrequency" values="0.008;0.012;0.008" dur="30s" repeatCount="indefinite"/>
+                <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="3" result="turbulence">
+                    <animate attributeName="baseFrequency" values="0.01;0.015;0.01" dur="20s" repeatCount="indefinite"/>
                 </feTurbulence>
-                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="50" xChannelSelector="R" yChannelSelector="G"/>
+                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="80" xChannelSelector="R" yChannelSelector="G"/>
             </filter>
         </defs>
     </svg>
@@ -347,12 +347,12 @@
         <!-- Base color -->
         <rect width="100" height="100" fill="#0f0f1a"/>
         <!-- Large animated blobs that will be swirled -->
-        <circle cx="30" cy="30" r="35" fill="url(#bgGrad1)" opacity="0.8">
+        <circle cx="30" cy="30" r="50" fill="url(#bgGrad1)" opacity="0.9">
             <animate attributeName="cx" values="30;35;30" dur="15s" repeatCount="indefinite"/>
             <animate attributeName="cy" values="30;25;30" dur="12s" repeatCount="indefinite"/>
-            <animate attributeName="r" values="35;40;35" dur="10s" repeatCount="indefinite"/>
+            <animate attributeName="r" values="50;55;50" dur="10s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="70" cy="70" r="30" fill="url(#bgGrad2)" opacity="0.8">
+        <circle cx="70" cy="70" r="45" fill="url(#bgGrad2)" opacity="0.9">
             <animate attributeName="cx" values="70;65;70" dur="18s" repeatCount="indefinite"/>
             <animate attributeName="cy" values="70;75;70" dur="14s" repeatCount="indefinite"/>
             <animate attributeName="r" values="30;35;30" dur="12s" repeatCount="indefinite"/>
