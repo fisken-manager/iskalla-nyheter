@@ -12,9 +12,11 @@ from pathlib import Path
 
 # RSS-källor för curling
 RSS_SOURCES = {
-    "google_news": "https://news.google.com/rss/search?q=curling&hl=sv&gl=SE&ceid=SE:sv",
-    "thecurlingnews": "https://thecurlingnews.com/feed",  # om den finns
-    # Kan lägga till fler
+    "google_news_sv": "https://news.google.com/rss/search?q=curling&hl=sv&gl=SE&ceid=SE:sv",
+    "google_news_us": "https://news.google.com/rss/search?q=curling&hl=en&gl=US&ceid=US:en",
+    "google_news_ca": "https://news.google.com/rss/search?q=curling&hl=en&gl=CA&ceid=CA:en",
+    "google_news_gb": "https://news.google.com/rss/search?q=curling&hl=en&gl=GB&ceid=GB:en",
+    # Kan lägga till fler länder
 }
 
 def fetch_rss(url, source_name):
