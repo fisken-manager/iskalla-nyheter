@@ -5,256 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre — Iskalla Nyheter</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
-        
-        :root {
-            --isbla: #1a2332;
-            --morkis: #0d1117;
-            --frost: #c9d1d9;
-            --dalablatt: #2d4a6f;
-            --snovit: #f0f6fc;
-            --askgra: #8b949e;
-            --bloodfrost: #58a6ff;
-            --isglans: rgba(88, 166, 255, 0.1);
-        }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400&display=swap');
+        :root { --bg: #0d1117; --text: #c9d1d9; --muted: #8b949e; --accent: #58a6ff; --border: #30363d; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--morkis);
-            color: var(--frost);
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        
-        header {
-            background: linear-gradient(180deg, var(--isbla) 0%, var(--morkis) 100%);
-            border-bottom: 1px solid var(--dalablatt);
-            padding: 1.5rem 0;
-        }
-        
-        .header-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-        }
-        
-        .masthead {
-            font-family: 'Crimson Text', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, var(--snovit) 0%, var(--askgra) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .masthead a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        nav {
-            background: var(--isbla);
-            border-bottom: 1px solid rgba(45, 74, 111, 0.5);
-            padding: 0.8rem 0;
-        }
-        
-        .nav-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        
-        nav a {
-            color: var(--frost);
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        
-        nav a:hover {
-            background: var(--isglans);
-            color: var(--bloodfrost);
-        }
-        
-        main {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-        
-        .category-tag {
-            display: inline-block;
-            background: var(--isglans);
-            color: var(--bloodfrost);
-            padding: 0.4rem 1rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-        }
-        
-        h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--snovit);
-        }
-        
-        .meta {
-            color: var(--askgra);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--dalablatt);
-        }
-        
-        .article-hero-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            border: 1px solid var(--dalablatt);
-        }
-        
-        .placeholder-image {
-            background: linear-gradient(145deg, var(--isbla), var(--dalablatt));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--askgra);
-            font-size: 1.2rem;
-        }
-        
-        .article-content {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--frost);
-        }
-        
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .ordsprak-box {
-            background: linear-gradient(145deg, var(--dalablatt), var(--isbla));
-            border-left: 4px solid var(--bloodfrost);
-            padding: 1.5rem 2rem;
-            margin: 2.5rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .ordsprak-box blockquote {
-            font-family: 'Crimson Text', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--snovit);
-            margin: 0;
-        }
-        
-        .ordsprak-box cite {
-            display: block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--askgra);
-            font-style: normal;
-        }
-        
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--bloodfrost);
-            text-decoration: none;
-            margin-top: 3rem;
-            padding: 0.8rem 1.5rem;
-            border: 1px solid var(--dalablatt);
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        
-        .back-link:hover {
-            background: var(--isglans);
-            border-color: var(--bloodfrost);
-        }
-        
-        footer {
-            background: var(--isbla);
-            border-top: 1px solid var(--dalablatt);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        
-        .footer-logo {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.3rem;
-            color: var(--askgra);
-        }
-        
-        .footer-tagline {
-            font-style: italic;
-            color: var(--askgra);
-            opacity: 0.7;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; max-width: 700px; margin: 0 auto; padding: 3rem 1.5rem; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back { display: inline-block; margin-bottom: 2rem; }
+        .date { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; }
+        h1 { font-family: 'Crimson Text', serif; font-size: 2rem; font-weight: 600; margin: 0.5rem 0 1.5rem; color: #f0f6fc; line-height: 1.2; }
+        .article-img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; }
+        p { margin-bottom: 1rem; }
+        .ordsprak { font-family: 'Crimson Text', serif; font-style: italic; color: var(--accent); border-left: 2px solid var(--accent); padding-left: 1rem; margin-top: 2rem; }
+        footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="masthead"><a href="../index.html">Iskalla Nyheter</a></div>
-        </div>
-    </header>
+    <a href="../index.html" class="back">← Tillbaka</a>
     
-    <nav>
-        <div class="nav-content">
-            <a href="../index.html">← Startsida</a>
-            <a href="../index.html#senaste">Senaste</a>
-            <a href="../index.html#mysterier">Mysterier</a>
-            <a href="../index.html#sm2026">SM 2026</a>
-        </div>
-    </nav>
-    
-    <main>
-        <article>
-            <span class="category-tag">Vetenskap</span>
-            <h1>FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre</h1>
-            <div class="meta">Publicerad 2026-03-09 | Iskalla Nyheter</div>
-            
-            <img src="../images/elder-winter.jpg" alt="FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre" class="article-hero-image">
-            
-            <div class="article-content">
-                <p>Forskare vid Umeå Universitet har upptäckt att curling förlänger livet, men den eviga vintern i själen gör att spelarna känner sig mer förbrukade. Den som sopar sist, sopar bäst — eller sämst, beroende på vind.</p>
-            </div>
-            
-            <div class="ordsprak-box">
-                <blockquote>"Den som sopar sist, sopar bäst — eller sämst, beroende på vind."</blockquote>
-                <cite>— Mörkrets Dal</cite>
-            </div>
-            
-            <a href="../index.html" class="back-link">← Tillbaka till startsidan</a>
-        </article>
-    </main>
+    <article>
+        <div class="date">2026-03-09</div>
+        <h1>FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre</h1>
+        <img src="../images/elder-winter.jpg" alt="" class="article-img">
+        <p>Forskare vid Umeå Universitet har upptäckt att curling förlänger livet, men den eviga vintern i själen gör att spelarna känner sig mer förbrukade. Den som sopar sist, sopar bäst — eller sämst, beroende på vind.</p>
+        <p class="ordsprak">"Den som sopar sist, sopar bäst — eller sämst, beroende på vind."</p>
+    </article>
     
     <footer>
-        <div class="footer-logo">Iskalla Nyheter</div>
-        <p class="footer-tagline">"Den som sopar sist, sopar bäst — eller sämst, beroende på vind."</p>
+        <p>Iskalla Nyheter — "Isen väntar på ingen människa"</p>
     </footer>
 </body>
 </html>

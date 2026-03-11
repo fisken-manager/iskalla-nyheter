@@ -3,659 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iskalla Nyheter — Curling & Mörker från Dalarnas Djup</title>
+    <title>Iskalla Nyheter</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400&display=swap');
         
         :root {
-            --isbla: #1a2332;
-            --morkis: #0d1117;
-            --frost: #c9d1d9;
-            --dalablatt: #2d4a6f;
-            --snovit: #f0f6fc;
-            --askgra: #8b949e;
-            --bloodfrost: #58a6ff;
+            --bg: #0d1117;
+            --text: #c9d1d9;
+            --muted: #8b949e;
+            --accent: #58a6ff;
+            --border: #30363d;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--morkis);
-            color: var(--frost);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
-            min-height: 100vh;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
         }
         
-        /* Header & Navigation */
         header {
-            background: linear-gradient(180deg, var(--isbla) 0%, var(--morkis) 100%);
-            border-bottom: 1px solid var(--dalablatt);
-            padding: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--bloodfrost), transparent);
-            opacity: 0.5;
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
             text-align: center;
-        }
-        
-        .masthead {
-            font-family: 'Crimson Text', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--snovit) 0%, var(--askgra) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 60px rgba(88, 166, 255, 0.3);
-        }
-        
-        .tagline {
-            font-style: italic;
-            color: var(--askgra);
-            font-size: 1.1rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .tagline::before,
-        .tagline::after {
-            content: ' ❄ ';
-            color: var(--bloodfrost);
-            opacity: 0.6;
-        }
-        
-        /* Navigation */
-        nav {
-            background: var(--isbla);
-            border-bottom: 1px solid rgba(45, 74, 111, 0.5);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        nav a {
-            color: var(--frost);
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-        
-        nav a:hover {
-            background: rgba(88, 166, 255, 0.1);
-            color: var(--bloodfrost);
-        }
-        
-        /* Date Stamp */
-        .date-stamp {
-            text-align: center;
-            padding: 1.5rem;
-            color: var(--askgra);
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(45, 74, 111, 0.3);
-        }
-        
-        .date-stamp strong {
-            color: var(--bloodfrost);
-        }
-        
-        /* Main Content */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-        
-        /* Featured Article */
-        .featured {
-            background: linear-gradient(145deg, var(--isbla) 0%, rgba(13, 17, 23, 0.8) 100%);
-            border: 1px solid var(--dalablatt);
-            border-radius: 8px;
-            overflow: hidden;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
             margin-bottom: 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
         }
         
-        .featured-image {
-            position: relative;
-            min-height: 400px;
-            background: var(--morkis);
-            overflow: hidden;
-        }
-        
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-            transition: opacity 0.3s ease;
-        }
-        
-        .featured-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent 0%, var(--isbla) 100%);
-        }
-        
-        .featured-content {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .category-tag {
-            display: inline-block;
-            background: rgba(88, 166, 255, 0.15);
-            color: var(--bloodfrost);
-            padding: 0.3rem 0.8rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            width: fit-content;
-        }
-        
-        .featured h2 {
+        h1 {
             font-family: 'Crimson Text', serif;
             font-size: 2.5rem;
             font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            color: var(--snovit);
+            color: #f0f6fc;
+            letter-spacing: -0.02em;
         }
         
-        .featured p {
-            color: var(--askgra);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .ordsprak {
-            font-style: italic;
-            color: var(--bloodfrost);
-            border-left: 3px solid var(--bloodfrost);
-            padding-left: 1.5rem;
-            margin-top: 1.5rem;
-            font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
-        }
-        
-        /* Article Grid */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .article-card {
-            background: var(--isbla);
-            border: 1px solid rgba(45, 74, 111, 0.5);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--bloodfrost);
-            box-shadow: 0 10px 40px rgba(88, 166, 255, 0.1);
-        }
-        
-        .article-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            opacity: 0.85;
-            border-bottom: 1px solid var(--dalablatt);
-        }
-        
-        .article-card-content {
-            padding: 1.5rem;
-        }
-        
-        .article-card .category-tag {
-            margin-bottom: 1rem;
-        }
-        
-        .article-card h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--snovit);
-            line-height: 1.3;
-        }
-        
-        .article-card p {
-            color: var(--askgra);
+        .tagline {
+            color: var(--muted);
             font-size: 0.95rem;
-            margin-bottom: 1rem;
+            margin-top: 0.5rem;
         }
         
-        .article-card .date {
-            font-size: 0.8rem;
-            color: var(--askgra);
-            opacity: 0.7;
+        article {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
         }
         
-        /* Sidebar / Widgets */
-        .sidebar-widget {
-            background: var(--isbla);
-            border: 1px solid var(--dalablatt);
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .sidebar-widget h4 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--snovit);
-            border-bottom: 1px solid var(--dalablatt);
-            padding-bottom: 0.8rem;
-        }
-        
-        .widget-list {
-            list-style: none;
-        }
-        
-        .widget-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(45, 74, 111, 0.3);
-        }
-        
-        .widget-list li:last-child {
+        article:last-child {
             border-bottom: none;
         }
         
-        .widget-list a {
-            color: var(--frost);
+        .date {
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 0.5rem 0 1rem;
+            color: #f0f6fc;
+            line-height: 1.3;
+        }
+        
+        h2 a {
+            color: inherit;
             text-decoration: none;
-            transition: color 0.2s ease;
         }
         
-        .widget-list a:hover {
-            color: var(--bloodfrost);
+        h2 a:hover {
+            color: var(--accent);
         }
         
-        /* Ordspråk Widget */
-        .ordsprak-widget {
-            background: linear-gradient(145deg, var(--dalablatt) 0%, var(--isbla) 100%);
-            border-radius: 8px;
-            padding: 2rem;
+        p {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .article-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .ordsprak {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            color: var(--accent);
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        footer {
             text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Article page specific */
+        .back {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
             margin-bottom: 2rem;
         }
         
-        .ordsprak-widget blockquote {
-            font-family: 'Crimson Text', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--snovit);
-            margin-bottom: 1rem;
-            line-height: 1.5;
+        .back:hover {
+            text-decoration: underline;
         }
-        
-        .ordsprak-widget cite {
-            font-size: 0.85rem;
-            color: var(--askgra);
-            font-style: normal;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--isbla);
-            border-top: 1px solid var(--dalablatt);
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.8rem;
-            color: var(--askgra);
-            margin-bottom: 1rem;
-        }
-        
-        .footer-tagline {
-            font-style: italic;
-            color: var(--askgra);
-            opacity: 0.7;
-            font-size: 0.95rem;
-        }
-        
-        .footer-divider {
-            width: 60px;
-            height: 1px;
-            background: var(--dalablatt);
-            margin: 2rem auto;
-        }
-        
-        .copyright {
-            font-size: 0.8rem;
-            color: var(--askgra);
-            opacity: 0.6;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .masthead {
-                font-size: 2.5rem;
-            }
-            
-            .featured {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-image {
-                min-height: 250px;
-            }
-            
-            .featured-image::after {
-                background: linear-gradient(180deg, transparent 0%, var(--isbla) 100%);
-            }
-            
-            .featured-content {
-                padding: 2rem;
-            }
-            
-            .featured h2 {
-                font-size: 1.8rem;
-            }
-            
-            .article-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Frost animation */
-        @keyframes frost-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-        
-        .frost-overlay {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background: radial-gradient(ellipse at top, rgba(88, 166, 255, 0.03) 0%, transparent 50%);
-            animation: frost-pulse 8s ease-in-out infinite;
-            z-index: 1000;
-        }
-        
-        /* Snow particles */
-        .snow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.4;
-        }
-        
-        /* Audio player styling */
-        .audio-player {
-            background: rgba(13, 17, 23, 0.8);
-            border: 1px solid var(--dalablatt);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .audio-player audio {
-            width: 100%;
-            filter: invert(1) hue-rotate(180deg);
-        }
-        
-        /* Video container */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background: var(--morkis);
-            border-radius: 8px;
-            margin-top: 1.5rem;
-        }
-        
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    
-        /* Länkar */
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        
-        .featured h2 a {
-            color: var(--snovit);
-            transition: color 0.2s;
-        }
-        
-        .featured h2 a:hover {
-            color: var(--bloodfrost);
-        }
-        
-        .read-more {
-            display: inline-block;
-            color: var(--bloodfrost);
-            margin-top: 1.5rem;
-            font-weight: 500;
-            transition: transform 0.2s;
-        }
-        
-        .read-more:hover {
-            transform: translateX(4px);
-        }
-        
-        .card-link {
-            display: block;
-            height: 100%;
-        }
-        
-        .card-link:hover h3 {
-            color: var(--bloodfrost);
-        }
-        
-        .read-more-link {
-            color: var(--bloodfrost);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        /* Placeholder bilder */
-        .placeholder-image {
-            background: linear-gradient(145deg, var(--isbla) 0%, var(--dalablatt) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--askgra);
-            font-size: 3rem;
-        }
-        
-        .featured .placeholder-image {
-            height: 100%;
-            min-height: 400px;
-        }
-        
-        .article-card .placeholder-image {
-            height: 200px;
-        }
-        
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            opacity: 0.85;
-            border-bottom: 1px solid var(--dalablatt);
-        }
-    
-    
-        /* Länkar */
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        
-        .featured h2 a {
-            color: var(--snovit);
-            transition: color 0.2s;
-        }
-        
-        .featured h2 a:hover {
-            color: var(--bloodfrost);
-        }
-        
-        .read-more {
-            display: inline-block;
-            color: var(--bloodfrost);
-            margin-top: 1.5rem;
-            font-weight: 500;
-            transition: transform 0.2s;
-        }
-        
-        .read-more:hover {
-            transform: translateX(4px);
-        }
-        
-        .card-link {
-            display: block;
-            height: 100%;
-        }
-        
-        .card-link:hover h3 {
-            color: var(--bloodfrost);
-        }
-        
-        .read-more-link {
-            color: var(--bloodfrost);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        /* Placeholder bilder */
-        .placeholder-image {
-            background: linear-gradient(145deg, var(--isbla) 0%, var(--dalablatt) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--askgra);
-            font-size: 3rem;
-        }
-        
-        .featured .placeholder-image {
-            height: 100%;
-            min-height: 400px;
-        }
-        
-        .article-card .placeholder-image {
-            height: 200px;
-        }
-        
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            opacity: 0.85;
-            border-bottom: 1px solid var(--dalablatt);
-        }
-    
     </style>
 </head>
 <body>
-    <div class="frost-overlay"></div>
-    
     <header>
-        <div class="header-content">
-            <h1 class="masthead">Iskalla Nyheter</h1>
-            <p class="tagline">Curling & Mörker från Dalarnas Djup</p>
-        </div>
+        <h1>Iskalla Nyheter</h1>
+        <p class="tagline">Curling & Mörker från Dalarnas Djup</p>
     </header>
-    
-    <nav>
-        <div class="nav-content">
-            <a href="#senaste">Senaste</a>
-            <a href="#tavling">Tävling</a>
-            <a href="#mysterier">Mysterier</a>
-            <a href="#profiler">Profiler</a>
-            <a href="#sm2026">SM 2026</a>
-            <a href="#arkiv">Arkiv</a>
-        </div>
-    </nav>
-    
-    <div class="date-stamp">
-        {{DATUM}} — Årgång I, Nummer {{NUMMER}} — "Isen väntar på ingen människa"
-    </div>
     
     <main>
         {{INNEHALL}}
     </main>
     
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">Iskalla Nyheter</div>
-            <p class="footer-tagline">"Den som sopar sist, sopar bäst — eller sämst, beroende på vind."</p>
-            <div class="footer-divider"></div>
-            <p class="copyright">© 2026 Iskalla Nyheter — En publikation från Mörkrets Dal</p>
-        </div>
+        <p>© 2026 — "Isen väntar på ingen människa"</p>
     </footer>
 </body>
 </html>
