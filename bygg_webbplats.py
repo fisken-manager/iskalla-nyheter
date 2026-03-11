@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Iskalla Nyheter - Simpel Webbplats-generator
+Iskalla Nyheter - Generator
+Post-exotic waifu meets Dalarna
 """
 
 import os
 import json
 import random
-from datetime import datetime
 from pathlib import Path
 
 PROJECT_DIR = Path("/home/fg/clawd/projects/iskalla-nyheter")
@@ -16,10 +16,10 @@ ARTICLES_DIR = PROJECT_DIR / "articles"
 ARTICLE_PAGES_DIR = PROJECT_DIR / "article-pages"
 
 ORDSPROK = [
-    "Isen väntar på ingen människa, men alla människor väntar på isen.",
-    "Den som sopar sist, sopar bäst — eller sämst, beroende på vind.",
+    "Isen väntar på ingen människa.",
+    "Den som sopar sist, sopar bäst.",
     "Stenen är rund, men ödet är fyrkantigt.",
-    "Vintern kommer alltid, oavsett hur man kastar.",
+    "Man ska inte gråta över spilld curlingsten.",
 ]
 
 def hamta_artiklar():
@@ -53,20 +53,20 @@ def skapa_artikel_sida(artikel):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{artikel['title']} — Iskalla Nyheter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400&display=swap');
-        :root {{ --bg: #0d1117; --text: #c9d1d9; --muted: #8b949e; --accent: #58a6ff; --border: #30363d; }}
+        :root {{ --tra: #c9b18a; --sot: #2a2520; --blod: #8b2635; --aska: #4a3f35; --mork: #1a1714; }}
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; max-width: 700px; margin: 0 auto; padding: 3rem 1.5rem; }}
-        a {{ color: var(--accent); text-decoration: none; }}
-        a:hover {{ text-decoration: underline; }}
-        .back {{ display: inline-block; margin-bottom: 2rem; }}
-        .date {{ color: var(--muted); font-size: 0.85rem; text-transform: uppercase; }}
-        h1 {{ font-family: 'Crimson Text', serif; font-size: 2rem; font-weight: 600; margin: 0.5rem 0 1.5rem; color: #f0f6fc; line-height: 1.2; }}
-        .article-img {{ width: 100%; height: 300px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem; }}
-        p {{ margin-bottom: 1rem; }}
-        .ordsprak {{ font-family: 'Crimson Text', serif; font-style: italic; color: var(--accent); border-left: 2px solid var(--accent); padding-left: 1rem; margin-top: 2rem; }}
-        footer {{ text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }}
+        body {{ font-family: 'Noto Sans JP', sans-serif; background: var(--mork); color: var(--tra); line-height: 1.8; max-width: 650px; margin: 0 auto; padding: 4rem 1.5rem; }}
+        a {{ color: var(--aska); text-decoration: none; }}
+        a:hover {{ color: var(--blod); }}
+        .back {{ display: inline-block; margin-bottom: 3rem; font-size: 0.85rem; }}
+        .date {{ color: var(--aska); font-size: 0.8rem; letter-spacing: 0.1em; }}
+        h1 {{ font-family: 'Noto Serif JP', serif; font-size: 1.6rem; font-weight: 400; margin: 1rem 0 1.5rem; color: var(--tra); line-height: 1.3; }}
+        .article-img {{ width: 100%; height: 280px; object-fit: cover; margin: 1.5rem 0; filter: sepia(30%) contrast(0.9); border: 1px solid var(--aska); }}
+        p {{ margin-bottom: 1rem; opacity: 0.9; }}
+        .ordsprak {{ font-family: 'Noto Serif JP', serif; font-style: italic; color: var(--blod); margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--aska); }}
+        footer {{ text-align: center; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--aska); color: var(--aska); font-size: 0.8rem; }}
     </style>
 </head>
 <body>
@@ -77,11 +77,11 @@ def skapa_artikel_sida(artikel):
         <h1>{artikel['title']}</h1>
         {bild_html}
         <p>{artikel.get('content', artikel.get('summary', ''))}</p>
-        <p class="ordsprak">"{ordsprak}"</p>
+        <p class="ordsprak">{ordsprak}</p>
     </article>
     
     <footer>
-        <p>Iskalla Nyheter — "Isen väntar på ingen människa"</p>
+        <p>囚 — Iskalla Nyheter</p>
     </footer>
 </body>
 </html>'''
@@ -99,37 +99,34 @@ def bygg_artikel_html(artikel):
             bild_html = f'<img src="{artikel["image"]}" alt="" class="article-img">'
     
     ordsprak = artikel.get('ordsprak', '')
-    ordsprak_html = f'<p class="ordsprak">"{ordsprak}"</p>' if ordsprak else ''
+    ordsprak_html = f'<p class="ordsprak">{ordsprak}</p>' if ordsprak else ''
     
     return f'''
         <article>
             <div class="date">{artikel.get('date', '')}</div>
             <h2><a href="article-pages/{slug}.html">{artikel['title']}</a></h2>
             {bild_html}
-            <p>{artikel.get('summary', artikel.get('content', '')[:200])}</p>
+            <p>{artikel.get('summary', artikel.get('content', '')[:180])}</p>
             {ordsprak_html}
         </article>
     '''
 
 def generera():
-    print("❄️  Bygger simpel sida...")
+    print("囚 Bygger Iskalla Nyheter...")
     
     ARTICLE_PAGES_DIR.mkdir(exist_ok=True)
     
     template = TEMPLATE_PATH.read_text(encoding='utf-8')
     artiklar = hamta_artiklar()
     
-    # Skapa artikelsidor
     for artikel in artiklar:
         skapa_artikel_sida(artikel)
     
-    # Bygg startsida
     artiklar_html = '\n'.join(bygg_artikel_html(a) for a in artiklar)
-    
     html = template.replace("{{INNEHALL}}", artiklar_html)
     OUTPUT_PATH.write_text(html, encoding='utf-8')
     
-    print(f"✅ Klar! {len(artiklar)} artiklar.")
+    print(f"✅ {len(artiklar)} artiklar. Färdig.")
 
 if __name__ == "__main__":
     generera()
