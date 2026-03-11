@@ -478,6 +478,146 @@
             height: 100%;
             object-fit: cover;
         }
+    
+        /* Länkar */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .featured h2 a {
+            color: var(--snovit);
+            transition: color 0.2s;
+        }
+        
+        .featured h2 a:hover {
+            color: var(--bloodfrost);
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--bloodfrost);
+            margin-top: 1.5rem;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        
+        .read-more:hover {
+            transform: translateX(4px);
+        }
+        
+        .card-link {
+            display: block;
+            height: 100%;
+        }
+        
+        .card-link:hover h3 {
+            color: var(--bloodfrost);
+        }
+        
+        .read-more-link {
+            color: var(--bloodfrost);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Placeholder bilder */
+        .placeholder-image {
+            background: linear-gradient(145deg, var(--isbla) 0%, var(--dalablatt) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--askgra);
+            font-size: 3rem;
+        }
+        
+        .featured .placeholder-image {
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .article-card .placeholder-image {
+            height: 200px;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            opacity: 0.85;
+            border-bottom: 1px solid var(--dalablatt);
+        }
+    
+    
+        /* Länkar */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .featured h2 a {
+            color: var(--snovit);
+            transition: color 0.2s;
+        }
+        
+        .featured h2 a:hover {
+            color: var(--bloodfrost);
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--bloodfrost);
+            margin-top: 1.5rem;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        
+        .read-more:hover {
+            transform: translateX(4px);
+        }
+        
+        .card-link {
+            display: block;
+            height: 100%;
+        }
+        
+        .card-link:hover h3 {
+            color: var(--bloodfrost);
+        }
+        
+        .read-more-link {
+            color: var(--bloodfrost);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Placeholder bilder */
+        .placeholder-image {
+            background: linear-gradient(145deg, var(--isbla) 0%, var(--dalablatt) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--askgra);
+            font-size: 3rem;
+        }
+        
+        .featured .placeholder-image {
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .article-card .placeholder-image {
+            height: 200px;
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            opacity: 0.85;
+            border-bottom: 1px solid var(--dalablatt);
+        }
+    
     </style>
 </head>
 <body>
@@ -509,49 +649,67 @@
         
         <article class="featured">
             <div class="featured-image">
-                <img src="images/2026-03-11-MJÖLNAREN-NOTERAR-Legendaren-'.jpg" alt="MJÖLNAREN NOTERAR: Legendaren 'Gråa Vargen' från Siljan gör comeback vid 87 års ålder" loading="lazy">
+                <a href="article-pages/2026-03-11-mjölnaren-noterar-legendaren-gråa-vargen-från-silj.html"><img src="images/old-man.jpg" alt="MJÖLNAREN NOTERAR: Legendaren 'Gråa Vargen' från Siljan gör comeback vid 87 års ålder" loading="lazy"></a>
             </div>
             <div class="featured-content">
                 <span class="category-tag">Profiler</span>
-                <h2>MJÖLNAREN NOTERAR: Legendaren 'Gråa Vargen' från Siljan gör comeback vid 87 års ålder</h2>
+                <h2><a href="article-pages/2026-03-11-mjölnaren-noterar-legendaren-gråa-vargen-från-silj.html">MJÖLNAREN NOTERAR: Legendaren 'Gråa Vargen' från Siljan gör comeback vid 87 års ålder</a></h2>
                 <p>Ingen har sett honom på 30 år, men nu står han åter på isen med sin träborste från 1956. 'Döden kan vänta,' muttrar han.</p>
                 <p class="ordsprak">"En blind höna kan också hitta en sten, men inte alltid i huset."</p>
+                <a href="article-pages/2026-03-11-mjölnaren-noterar-legendaren-gråa-vargen-från-silj.html" class="read-more">Läs hela artikeln →</a>
             </div>
         </article>
     <div class="article-grid">
         <article class="article-card">
-            
-            <div class="article-card-content">
-                <span class="category-tag">Mysterier</span>
-                <h3>MÖRKRET SÄGER: Mysterium i Mjölby — Spöksten dyker upp vid midnatt</h3>
-                <p>Vaktmästaren rapporterar en ensam curlingsten som rör sig av sig själv när ingen ser. 'Den glider som om den letar efter något,' viskar han....</p>
-                <span class="date">2026-03-10</span>
-            </div>
+            <a href="article-pages/2026-03-10-morkret-sager-mysterium-i-mjolby-spoksten.html" class="card-link">
+                <img src="images/curling-mystery.jpg" alt="MÖRKRET SÄGER: Mysterium i Mjölby — Spöksten dyker upp vid midnatt" loading="lazy">
+                <div class="article-card-content">
+                    <span class="category-tag">Mysterier</span>
+                    <h3>MÖRKRET SÄGER: Mysterium i Mjölby — Spöksten dyker upp vid midnatt</h3>
+                    <p>Vaktmästaren rapporterar en ensam curlingsten som rör sig av sig själv när ingen ser. 'Den glider som om den letar efter något,' viskar han....</p>
+                    <span class="read-more-link">Läs mer →</span>
+                </div>
+            </a>
         </article>
     
         <article class="article-card">
-            
-            <div class="article-card-content">
-                <span class="category-tag">Vetenskap</span>
-                <h3>FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre</h3>
-                <p>Forskare vid Umeå Universitet har upptäckt att curling förlänger livet, men den eviga vintern i själen gör att spelarna känner sig mer förbrukade....</p>
-                <span class="date">2026-03-09</span>
-            </div>
+            <a href="article-pages/2026-03-09-fran-skuggan-ny-studie-curling-spelare.html" class="card-link">
+                <img src="images/elder-winter.jpg" alt="FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre" loading="lazy">
+                <div class="article-card-content">
+                    <span class="category-tag">Vetenskap</span>
+                    <h3>FRÅN SKUGGAN: Ny studie — Curling-spelare lever 4 år längre, känner sig 10 år äldre</h3>
+                    <p>Forskare vid Umeå Universitet har upptäckt att curling förlänger livet, men den eviga vintern i själen gör att spelarna känner sig mer förbrukade....</p>
+                    <span class="read-more-link">Läs mer →</span>
+                </div>
+            </a>
         </article>
     
         <article class="article-card">
-            
-            <div class="article-card-content">
-                <span class="category-tag">SM 2026</span>
-                <h3>ISKALLT: Umeå förbereder sig för SM — 'Vi har köpt in 40% mer snö än vanligt'</h3>
-                <p>Arrangörerna tar inga risker inför SM 2026. 'Om allt går åt helvete har vi i alla fall snö,' säger tävlingsledaren....</p>
-                <span class="date">2026-03-08</span>
-            </div>
+            <a href="article-pages/2026-03-08-iskallt-umea-forbereder-sm-2026.html" class="card-link">
+                <img src="images/curling-hero-1.jpg" alt="ISKALLT: Umeå förbereder sig för SM — 'Vi har köpt in 40% mer snö än vanligt'" loading="lazy">
+                <div class="article-card-content">
+                    <span class="category-tag">SM 2026</span>
+                    <h3>ISKALLT: Umeå förbereder sig för SM — 'Vi har köpt in 40% mer snö än vanligt'</h3>
+                    <p>Arrangörerna tar inga risker inför SM 2026. 'Om allt går åt helvete har vi i alla fall snö,' säger tävlingsledaren....</p>
+                    <span class="read-more-link">Läs mer →</span>
+                </div>
+            </a>
         </article>
     </div>
         <div class="ordsprak-widget">
-            <blockquote>"Borsten är kort, men minnet är långt."</blockquote>
+            <blockquote>"Den som sopar sist, sopar bäst — eller sämst, beroende på vind."</blockquote>
             <cite>— Mörkrets Dal, idag</cite>
+        </div>
+        
+        <div class="sidebar-widget">
+            <h4>Kategorier</h4>
+            <ul class="widget-list">
+                <li><a href="#">Mysterier</a></li>
+                <li><a href="#">Tävling</a></li>
+                <li><a href="#">Profiler</a></li>
+                <li><a href="#">SM 2026</a></li>
+                <li><a href="#">Vetenskap</a></li>
+            </ul>
         </div>
     
     </main>
