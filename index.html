@@ -35,7 +35,7 @@
             width: 200%;
             height: 200%;
             z-index: -2;
-            opacity: 0.25;
+            opacity: 0.4;
             filter: url(#swirl);
             animation: rotate 60s linear infinite;
         }
@@ -330,28 +330,35 @@
         </defs>
     </svg>
     
-    <!-- Full screen animated background -->
+    <!-- Full screen animated background with swirl -->
     <svg class="bg-swirl" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
         <defs>
             <radialGradient id="bgGrad1" cx="30%" cy="30%" r="70%">
-                <stop offset="0%" style="stop-color:#ff3864;stop-opacity:0.4" />
-                <stop offset="50%" style="stop-color:#7928ca;stop-opacity:0.2" />
-                <stop offset="100%" style="stop-color:#0a0a12;stop-opacity:0" />
+                <stop offset="0%" style="stop-color:#e94560;stop-opacity:0.5" />
+                <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:0.3" />
+                <stop offset="100%" style="stop-color:#0f0f1a;stop-opacity:0" />
             </radialGradient>
             <radialGradient id="bgGrad2" cx="70%" cy="70%" r="60%">
-                <stop offset="0%" style="stop-color:#7928ca;stop-opacity:0.4" />
-                <stop offset="50%" style="stop-color:#ff3864;stop-opacity:0.2" />
-                <stop offset="100%" style="stop-color:#0a0a12;stop-opacity:0" />
+                <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.5" />
+                <stop offset="50%" style="stop-color:#e94560;stop-opacity:0.3" />
+                <stop offset="100%" style="stop-color:#0f0f1a;stop-opacity:0" />
             </radialGradient>
         </defs>
-        <rect width="100" height="100" fill="#0a0a12"/>
-        <rect width="100" height="100" fill="url(#bgGrad1)"/>
-        <rect width="100" height="100" fill="url(#bgGrad2)"/>
-        <circle cx="50" cy="50" r="40" fill="none" stroke="#ff3864" stroke-width="0.5" opacity="0.2">
-            <animate attributeName="r" values="40;45;40" dur="10s" repeatCount="indefinite"/>
+        <!-- Base color -->
+        <rect width="100" height="100" fill="#0f0f1a"/>
+        <!-- Large animated blobs that will be swirled -->
+        <circle cx="30" cy="30" r="35" fill="url(#bgGrad1)" opacity="0.8">
+            <animate attributeName="cx" values="30;35;30" dur="15s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="30;25;30" dur="12s" repeatCount="indefinite"/>
+            <animate attributeName="r" values="35;40;35" dur="10s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="50" cy="50" r="30" fill="none" stroke="#7928ca" stroke-width="0.5" opacity="0.2">
-            <animate attributeName="r" values="30;35;30" dur="15s" repeatCount="indefinite"/>
+        <circle cx="70" cy="70" r="30" fill="url(#bgGrad2)" opacity="0.8">
+            <animate attributeName="cx" values="70;65;70" dur="18s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="70;75;70" dur="14s" repeatCount="indefinite"/>
+            <animate attributeName="r" values="30;35;30" dur="12s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="50" cy="50" r="25" fill="url(#bgGrad1)" opacity="0.6">
+            <animate attributeName="r" values="25;30;25" dur="8s" repeatCount="indefinite"/>
         </circle>
     </svg>
     
